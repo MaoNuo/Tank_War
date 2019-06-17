@@ -26,13 +26,15 @@ public class MainFrame extends JFrame {
 		
 		this.warPanel = new WarPanel();
 		contentPane.add(warPanel, BorderLayout.CENTER);
+		
+		this.setSize(WIDTH, HEIGHT);
+		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+		this.setLocationRelativeTo(null);
+		this.setVisible(true);
 	}
 	
 	public static void main(String[] args) {
-		MainFrame mf = new MainFrame(TITLE);
-		mf.setSize(WIDTH, HEIGHT);
-		mf.setDefaultCloseOperation(EXIT_ON_CLOSE);
-		mf.setLocationRelativeTo(null);
-		mf.setVisible(true);
+		new MainFrame(TITLE);
+
 	}
 }
