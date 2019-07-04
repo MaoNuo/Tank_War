@@ -12,8 +12,9 @@ public class MainFrame extends JFrame {
 	private final static int HEIGHT = 600;
 	private final static String TITLE = "Tank";
 	
-	private MenuBar menuBar;
-	private WarPanel warPanel;
+	private MenuBar menuBar = null;
+	private WarPanel warPanel = null;
+	private Stage stage = null;
 	
 	public MainFrame(String title) {
 		super(title);
@@ -27,19 +28,13 @@ public class MainFrame extends JFrame {
 		this.warPanel = new WarPanel();
 		contentPane.add(warPanel, BorderLayout.CENTER);
 		
+		this.stage = new Stage(warPanel);
 		this.addKeyListener(warPanel.pl);
 		
 		this.setSize(WIDTH, HEIGHT);
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setLocationRelativeTo(null);
 		this.setVisible(true);
-		System.out.println(this.getWidth());
-		System.out.println(this.getHeight());
-		System.out.println(contentPane.getWidth());
-		System.out.println(contentPane.getHeight());
-		System.out.println(this.warPanel.getHeight());
-		System.out.println(this.warPanel.getWidth());
-		System.out.println(this.warPanel.getHeight());
 	}
 	
 	public static void main(String[] args) {
