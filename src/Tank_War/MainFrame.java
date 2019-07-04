@@ -1,7 +1,6 @@
 package Tank_War;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Container;
 import javax.swing.JFrame;
 
@@ -28,10 +27,19 @@ public class MainFrame extends JFrame {
 		this.warPanel = new WarPanel();
 		contentPane.add(warPanel, BorderLayout.CENTER);
 		
+		this.addKeyListener(warPanel.pl);
+		
 		this.setSize(WIDTH, HEIGHT);
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setLocationRelativeTo(null);
 		this.setVisible(true);
+		System.out.println(this.getWidth());
+		System.out.println(this.getHeight());
+		System.out.println(contentPane.getWidth());
+		System.out.println(contentPane.getHeight());
+		System.out.println(this.warPanel.getHeight());
+		System.out.println(this.warPanel.getWidth());
+		System.out.println(this.warPanel.getHeight());
 	}
 	
 	public static void main(String[] args) {
