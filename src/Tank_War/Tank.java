@@ -20,12 +20,12 @@ public abstract class Tank {
 	protected static final int rect2LocationOfX = 5;
 	protected static final int rect2LocationOfY = 5;
 	protected static final int ovalSize = 10;
-	protected static final int ovalLocationOfX = 4;
+	protected static final int ovalLocationOfX = 5;
 	protected static final int ovalLocationOfY = 10;
 	protected static final int lineLength = 10;
 	protected static final int lineLocationOfX = 10;
 	protected static final int lineLocationOfY = 15;
-	
+
 	private int x = 0;
 	private int y = 0;
 	

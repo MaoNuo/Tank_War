@@ -14,7 +14,7 @@ public class MainFrame extends JFrame {
 	
 	private MenuBar menuBar = null;
 	private WarPanel warPanel = null;
-	private Stage stage = null;
+//	private Stage stage = null;
 	
 	public MainFrame(String title) {
 		super(title);
@@ -28,7 +28,7 @@ public class MainFrame extends JFrame {
 		this.warPanel = new WarPanel();
 		contentPane.add(warPanel, BorderLayout.CENTER);
 		
-		this.stage = new Stage(warPanel);
+//		this.stage = new Stage(warPanel);
 		this.addKeyListener(warPanel.pl);
 		
 		this.setSize(WIDTH, HEIGHT);

@@ -13,14 +13,17 @@ public class WarPanel extends JPanel{
 	private static final long serialVersionUID = 1L;
 
 	Player pl = null;
+	Enemy ene = null;
 	
 	public WarPanel() {
 		this.setBackground(Color.GRAY);
 		pl = new Player(10, 10, this);
+		ene = new Enemy(100, 100, this);
 	}
 	
 	public void paint(Graphics g) {
 		super.paint(g);
 		pl.drawTank(pl.getX(), pl.getY(), pl.type, pl.getDirect(), g);
+		ene.drawTank(ene.getX(), ene.getY(), ene.type, ene.getDirect(), g);
 	}
 }
