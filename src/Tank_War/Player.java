@@ -15,42 +15,23 @@ public class Player extends Tank implements KeyListener{
 	public Player(int x, int y, WarPanel wp) {
 		super(x, y);
 		this.type = "Player";
-		this.color = Color.CYAN;
 		this.wp = wp;
+		this.dir = Direct.UP;
 	}
 
 	@Override
 	public void keyPressed(KeyEvent e) {
 		// TODO Auto-generated method stub
 		if(e.getKeyCode() == KeyEvent.VK_DOWN){
-			this.setDirect("BOTTOM");
-			if(this.wp.getHeight() >= this.getY() + Tank.rect1Height + speed) {
-				this.setY(this.getY() + speed);
-			}else {
-				this.setY(this.wp.getHeight() - Tank.rect1Height);
-			}			
+			this.setDirect(Direct.DOWN);
 		}else if(e.getKeyCode() == KeyEvent.VK_UP) {
-			this.setDirect("TOP");
-			if(this.getY() - speed  >= 0) {
-				this.setY(this.getY() - speed);
-			}else {
-				this.setY(0);
-			}	
+			this.setDirect(Direct.UP);	
 		}else if(e.getKeyCode() == KeyEvent.VK_RIGHT) {
-			this.setDirect("RIGHT");
-			if(this.wp.getWidth() >= this.getX() + Tank.rect1Height + speed) {
-				this.setX(this.getX() + speed);
-			}else {
-				this.setX(this.wp.getWidth() - Tank.rect1Height);
-			}	
+			this.setDirect(Direct.RIGHT);	
 		}else if(e.getKeyCode() == KeyEvent.VK_LEFT) {
-			this.setDirect("LEFT");
-			if(this.getX() - speed  >= 0) {
-				this.setX(this.getX() - speed);
-			}else {
-				this.setX(0);
-			}	
+			this.setDirect(Direct.LEFT);
 		}
+		this.move(getDirect());
 		wp.repaint();
 	}
 

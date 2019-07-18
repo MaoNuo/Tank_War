@@ -8,7 +8,7 @@ public class MainFrame extends JFrame {
 	
 	private static final long serialVersionUID = 1L;
 	
-	private final static int WIDTH = 1000;
+	private final static int WIDTH = 800;
 	private final static int HEIGHT = 600;
 	private final static String TITLE = "Tank";
 	

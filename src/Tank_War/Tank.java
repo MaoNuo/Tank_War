@@ -4,36 +4,22 @@
 
 package Tank_War;
 
-import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.Toolkit;
 
 public abstract class Tank {
 
-	protected static final int rect1Width = 5;
-	protected static final int rect1Height = 30;
-	protected static final int rect1LocationOfX = 0;
-	protected static final int rect1LocationOfY = 0;
-	protected static final int rect1_2LocationOfX = 15;
-	protected static final int rect1_2LocationOfY = 0;
-	protected static final int rect2Width = 10;
-	protected static final int rect2Height = 20;
-	protected static final int rect2LocationOfX = 5;
-	protected static final int rect2LocationOfY = 5;
-	protected static final int ovalSize = 10;
-	protected static final int ovalLocationOfX = 5;
-	protected static final int ovalLocationOfY = 10;
-	protected static final int lineLength = 10;
-	protected static final int lineLocationOfX = 10;
-	protected static final int lineLocationOfY = 15;
-
+	private Toolkit tk = Toolkit.getDefaultToolkit();
+	private Image[] tankImages = null;
+	
 	private int x = 0;
 	private int y = 0;
 	
-	protected String type;
-	protected int hp;
-	protected int speed = 5;
-	private String direct = "TOP";
-	protected Color color;
+	public String type = null;
+	public boolean alive = true;
+	public int speed = 5;
+	public Direct dir = null;
 	
 	public Tank (int x, int y) {
 		this.x = x;
@@ -56,54 +42,85 @@ public abstract class Tank {
 		this.y = y;
 	}
 	
-	public String getDirect() {
-		return direct;
+	public Direct getDirect() {
+		return dir;
 	}
 
-	public void setDirect(String direct) {
-		this.direct = direct;
+	public void setDirect(Direct dir) {
+		this.dir = dir;
 	}
 	
-	public void drawTank(int x, int y, String type, String direct, Graphics g) {
-		g.setColor(color);
+	public void drawTank(int x, int y, String type, Direct direct, Graphics g) {
 		switch(type) {
+		case "Player":{
+			tankImages = new Image[] {
+					tk.getImage(Tank.class.getClassLoader().getResource("Images/tankD.gif")),
+					tk.getImage(Tank.class.getClassLoader().getResource("Images/tankU.gif")),
+					tk.getImage(Tank.class.getClassLoader().getResource("Images/tankL.gif")),
+					tk.getImage(Tank.class.getClassLoader().getResource("Images/tankR.gif"))			
+			};
+			break;
+		}
+		case "Enemy":{
+			tankImages = new Image[] {
+					tk.getImage(Tank.class.getClassLoader().getResource("Images/HtankD.gif")), 
+					tk.getImage(Tank.class.getClassLoader().getResource("Images/HtankU.gif")), 
+					tk.getImage(Tank.class.getClassLoader().getResource("Images/HtankL.gif")),
+					tk.getImage(Tank.class.getClassLoader().getResource("Images/HtankR.gif"))		
+			};
+			break;
+		}
 		
 		}
 		switch(direct) {
-		case "TOP":{
-			g.fill3DRect(x + rect1LocationOfX, y + rect1LocationOfY, rect1Width, rect1Height, false);
-			g.fill3DRect(x + rect1_2LocationOfX, y + rect1_2LocationOfY, rect1Width, rect1Height, false);
-			g.fill3DRect(x + rect2LocationOfX, y + rect2LocationOfY, rect2Width, rect2Height, false);
-			g.fillOval(x + ovalLocationOfX, y + ovalLocationOfY, ovalSize, ovalSize);
-			g.drawLine(x + lineLocationOfX, y + lineLocationOfY, x + lineLength, y);
+		case DOWN:{
+			g.drawImage(tankImages[0], x, y, null);
 			break;
 		}
-		case "BOTTOM":{
-			g.fill3DRect(x + rect1LocationOfX, y + rect1LocationOfY, rect1Width, rect1Height, false);
-			g.fill3DRect(x + rect1_2LocationOfX, y + rect1_2LocationOfY, rect1Width, rect1Height, false);
-			g.fill3DRect(x + rect2LocationOfX, y + rect2LocationOfY, rect2Width, rect2Height, false);
-			g.fillOval(x + ovalLocationOfX, y + ovalLocationOfY, ovalSize, ovalSize);
-			g.drawLine(x + lineLocationOfX, y + lineLocationOfY, x + lineLength, y + 2 * lineLocationOfY);
+		case UP:{
+			g.drawImage(tankImages[1], x, y, null);
 			break;
 		}
-		case "LEFT":{
-			g.fill3DRect(x + rect1LocationOfX, y + rect1LocationOfY, rect1Height, rect1Width, false);
-			g.fill3DRect(x + rect1_2LocationOfY, y + rect1_2LocationOfX, rect1Height, rect1Width, false);
-			g.fill3DRect(x + rect2LocationOfY, y + rect2LocationOfX, rect2Height, rect2Width, false);
-			g.fillOval(x + ovalLocationOfY, y + ovalLocationOfX, ovalSize, ovalSize);
-			g.drawLine(x + lineLocationOfY, y + lineLocationOfX, x , y + lineLength);
+		case LEFT:{
+			g.drawImage(tankImages[2], x, y, null);
 			break;
 		}
-		case "RIGHT":{
-			g.fill3DRect(x + rect1LocationOfX, y + rect1LocationOfY, rect1Height, rect1Width, false);
-			g.fill3DRect(x + rect1_2LocationOfY, y + rect1_2LocationOfX, rect1Height, rect1Width, false);
-			g.fill3DRect(x + rect2LocationOfY, y + rect2LocationOfX, rect2Height, rect2Width, false);
-			g.fillOval(x + ovalLocationOfY, y + ovalLocationOfX, ovalSize, ovalSize);
-			g.drawLine(x + lineLocationOfY, y + lineLocationOfX, x + 2 * lineLocationOfY, y + lineLength);
+		case RIGHT:{
+			g.drawImage(tankImages[3], x, y, null);
 			break;
 		}
 		default: break;
 		}
 
+	}
+	
+	public void move(Direct dir) {
+		switch(dir) {
+		case DOWN:{
+			y += speed;
+			break;
+		}
+		case UP:{
+			y -= speed;
+			break;
+		}
+		case LEFT:{
+			x -= speed;
+			break;
+		}
+		case RIGHT:{
+			x += speed;
+			break;
+		}
+		case STOP:{
+			break;
+		}
+		
+		}
+	}
+	
+	public Bullets fire() {
+		return null;
+		
 	}
 }
