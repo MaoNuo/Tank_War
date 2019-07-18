@@ -10,11 +10,13 @@ import java.awt.Toolkit;
 
 public abstract class Tank {
 
+	public static final int width = 35, length = 35;
+	public static final int menubarLength = 45;
 	private Toolkit tk = Toolkit.getDefaultToolkit();
 	private Image[] tankImages = null;
 	
-	private int x = 0;
-	private int y = 0;
+	protected int x = 0;
+	protected int y = 0;
 	
 	public String type = null;
 	public boolean alive = true;
@@ -97,19 +99,35 @@ public abstract class Tank {
 	public void move(Direct dir) {
 		switch(dir) {
 		case DOWN:{
-			y += speed;
+			if( ( y + speed + Tank.length + menubarLength) <= MainFrame.HEIGHT ) {
+				y += speed;
+			}else {
+				y = MainFrame.HEIGHT - Tank.length - menubarLength;
+			}
 			break;
 		}
 		case UP:{
-			y -= speed;
+			if( (y - speed) >= 0 ) {
+				y -= speed;
+			}else {
+				y = 0;
+			}
 			break;
 		}
 		case LEFT:{
-			x -= speed;
+			if( (x - speed) >= 0 ) {
+				x -= speed;
+			}else {
+				x = 0;
+			}
 			break;
 		}
 		case RIGHT:{
-			x += speed;
+			if( (x + speed + Tank.width) <= MainFrame.WIDTH ) {
+				x += speed;
+			}else {
+				x = MainFrame.WIDTH - Tank.width;
+			}
 			break;
 		}
 		case STOP:{
@@ -119,8 +137,5 @@ public abstract class Tank {
 		}
 	}
 	
-	public Bullets fire() {
-		return null;
-		
-	}
+	public abstract Bullets fire();
 }

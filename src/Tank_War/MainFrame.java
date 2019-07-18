@@ -8,8 +8,8 @@ public class MainFrame extends JFrame {
 	
 	private static final long serialVersionUID = 1L;
 	
-	private final static int WIDTH = 800;
-	private final static int HEIGHT = 600;
+	public final static int WIDTH = 800;
+	public final static int HEIGHT = 600;
 	private final static String TITLE = "Tank";
 	
 	private MenuBar menuBar = null;
@@ -35,6 +35,10 @@ public class MainFrame extends JFrame {
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setLocationRelativeTo(null);
 		this.setVisible(true);
+
+		Thread t = new Thread(this.warPanel);
+		t.start();
+
 	}
 	
 	public static void main(String[] args) {
